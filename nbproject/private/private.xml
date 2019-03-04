@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Flor/Documents/NetBeansProjects/Prueba1/src/Vistas/Inicio.java</file>
-            <file>file:/C:/Users/Flor/Documents/NetBeansProjects/Prueba1/src/Data/TurnoData.java</file>
-            <file>file:/C:/Users/Flor/Documents/NetBeansProjects/Prueba1/src/Vistas/Menu.java</file>
-            <file>file:/C:/Users/Flor/Documents/NetBeansProjects/Prueba1/src/Data/PagoData.java</file>
+            <file>file:/C:/Users/Flor/Documents/NetBeansProjects/Prueba1/src/Data/BandaData.java</file>
+            <file>file:/C:/Users/Flor/Documents/NetBeansProjects/Prueba1/src/Vistas/Agenda.java</file>
         </group>
     </open-files>
 </project-private>

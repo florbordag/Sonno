@@ -39,6 +39,7 @@ private Conexion con;
 private Admin admin;
 private Turno tr;
 private Banda banda;
+private BandaData bd;
 private TurnoData td;
 private int id_turnoselec;
     /**
@@ -62,6 +63,7 @@ bteliminar.setEnabled(false);
     try {
         con = new Conexion("jdbc:mysql://localhost/sonno", "root", "");
         td = new TurnoData(con);
+        bd = new BandaData(con);
                     DefaultTableModel modelo;
             modelo = td.mostrarAgenda();
 
@@ -301,6 +303,9 @@ bteliminar.setEnabled(true);
         
         int selec = tablagenda.rowAtPoint(evt.getPoint());
         id_turnoselec = Integer.valueOf(String.valueOf(tablagenda.getValueAt(selec, 0)));
+        String band =String.valueOf(tablagenda.getValueAt(selec, 1));
+        banda = bd.buscarBanda(band);
+        tr = td.buscarTurnoporId(id_turnoselec);
     }//GEN-LAST:event_tablagendaMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -330,13 +335,23 @@ columna.setMaxWidth(200);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteliminarActionPerformed
-try {td.eliminarTurnoporid(id_turnoselec);
+        boolean nopagado = tr.getPagado().equals("no");
+        int nuevosaldo = banda.getSaldo() - tr.getMonto();
+        System.out.println(nopagado);
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea eliminar este turno?",
+                "Cancelar Turno", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        try {
+            if (nopagado){
+        bd.editarBanda(banda.getNombre(),nuevosaldo , banda.getDias_fijos(), banda.getId_banda());}
+    td.eliminarTurnoporid(id_turnoselec);
 JOptionPane.showMessageDialog(null, "El turno se ha eliminado.");
 }catch (Exception e){JOptionPane.showMessageDialog(null, "ERROR");}
                     DefaultTableModel modelo;
             modelo = td.mostrarAgenda();
             tablagenda.setModel(modelo);
             txtturno.setText("TURNOS PENDIENTES");
+        }
+
     }//GEN-LAST:event_bteliminarActionPerformed
 
     private void btmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmodificarActionPerformed

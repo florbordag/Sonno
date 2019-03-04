@@ -205,6 +205,7 @@ java.sql.Timestamp fec = new java.sql.Timestamp(rs.getTimestamp("fecha").getTime
             JOptionPane.showMessageDialog(null, e);
         }
     }
+             
  public DefaultTableModel mostrarturnos(Banda banda) {
         DefaultTableModel modelo;
 
@@ -401,7 +402,7 @@ PreparedStatement ps = con.prepareStatement(sql);
             JOptionPane.showConfirmDialog(null,"ERROR EN METODO TURNOSdeHOY() DE TURNODATA" +e);
             return null;
         }}
-      
+
 }
 
 
